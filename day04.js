@@ -1,6 +1,6 @@
 // day-04 ceres search
 
-const input = await Deno.readTextFile('./input.txt');
+const input = await Deno.readTextFile('./input/input04.txt');
 
 let count = 0;
 

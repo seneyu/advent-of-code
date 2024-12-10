@@ -1,6 +1,6 @@
 // day-02 red-nosed
 
-const input = await Deno.readTextFile('./input.txt');
+const input = await Deno.readTextFile('./input/input02.txt');
 
 function processSafeReports(input) {
   // group data by lines and convert into an array

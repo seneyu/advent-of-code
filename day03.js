@@ -1,6 +1,6 @@
 // day-03 mull it over
 
-const input = await Deno.readTextFile('./input.txt');
+const input = await Deno.readTextFile('./input/input03.txt');
 
 // console.log(input);
 

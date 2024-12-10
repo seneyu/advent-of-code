@@ -1,6 +1,6 @@
 // day-05 print queue
 
-const input = await Deno.readTextFile('./input.txt');
+const input = await Deno.readTextFile('./input/input05.txt');
 
 function printQueue(input) {
   // declare an array to store each update that returns truthy

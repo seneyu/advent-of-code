@@ -1,6 +1,6 @@
 // day 06 guard gallivant
 
-const input = await Deno.readTextFile('./input.txt');
+const input = await Deno.readTextFile('./input/input06.txt');
 
 let count = 0;
 let currRow, currCol;
