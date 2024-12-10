@@ -1,10 +1,10 @@
 // day-01 historian-hysteria
 
-const input = await Deno.readTextFile('./input/input01.txt');
-
 // ------------------ part 1 ------------------
 
-function processData(input) {
+export function historianHysteria(input) {
+  if (!input || input.trim() === '') return 0;
+
   // convert input data into two arrays
   const dataInput = input.split('\n').reduce(
     (acc, currLine) => {
@@ -33,9 +33,6 @@ function processData(input) {
   return sum;
 }
 
-console.log(processData(input));
-// console.log(Deno.version);
-
 // ------------------ part 2 ------------------
 
 // convert the columns into two arrays
@@ -43,10 +40,11 @@ console.log(processData(input));
 // iterate second array and if matches with key, add number of times appear as values
 // iterate the object and calculate the sum
 
-let sum = 0;
-let obj = {};
+export function similarityScore(input) {
+  if (!input || input.trim() === '') return 0;
 
-function historianHysteria_part2(input) {
+  let sum = 0;
+
   // convert input data into two arrays
   const dataInput = input.split('\n').reduce(
     (acc, currLine) => {
@@ -58,25 +56,26 @@ function historianHysteria_part2(input) {
     [[], []]
   );
 
-  // assign number of appearance to respective ele in obj
-  for (let ele1 of dataInput[0]) {
-    obj[ele1] = 0;
-    for (let ele2 of dataInput[1]) {
-      if (ele1 === ele2) {
-        obj[ele1] += 1;
-      }
-    }
+  // for each num in left array, count its occurrences in right array
+  const rightCounts = {};
+  for (let num of dataInput[1]) {
+    rightCounts[num] = (rightCounts[num] || 0) + 1;
   }
 
-  // find ele in obj with value greater than 1
-  // get the sum of ele multiply by number of occurence
-  for (let key in obj) {
-    if (obj[key] !== 0) {
-      sum += Number(key) * obj[key];
-    }
+  // for each number in left array, add to sum (number * its occurrences in right)
+  for (let leftNum of dataInput[0]) {
+    sum += leftNum * (rightCounts[leftNum] || 0);
   }
 
   return sum;
 }
 
-console.log(historianHysteria_part2(input));
+if (import.meta.main) {
+  try {
+    const input = await Deno.readTextFile('./input/input01.txt');
+    console.log('Part 1:', historianHysteria(input));
+    console.log('Part 2:', similarityScore(input));
+  } catch (error) {
+    console.error('Error reading input file:', error);
+  }
+}
